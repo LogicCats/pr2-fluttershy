@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../models/game_engine.dart';
 
-class EngineTab extends StatelessWidget {
+class EngineTab extends StatefulWidget {
   final GameEngine engine;
 
   const EngineTab({super.key, required this.engine});
+
+  @override
+  State<EngineTab> createState() => _EngineTabState();
+}
+
+class _EngineTabState extends State<EngineTab> {
+  int _currentImageIndex = 0;
+
+  void _cycleImage() {
+    setState(() {
+      _currentImageIndex = (_currentImageIndex + 1) % widget.engine.imageUrls.length;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +28,12 @@ class EngineTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            engine.name,
+            widget.engine.name,
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           Text(
-            engine.description,
+            widget.engine.description,
             style: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 20),
@@ -65,25 +79,25 @@ class EngineTab extends StatelessWidget {
   }
 
   Widget _buildImage() {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Image.network(
-        engine.imageUrl,
-        height: 200,
-        fit: BoxFit.contain,
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) return child;
-          return const Center(child: CircularProgressIndicator());
-        },
-        errorBuilder: (context, error, stackTrace) {
-          return const Center(
+    return GestureDetector(
+      onTap: _cycleImage,
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: CachedNetworkImage(
+          imageUrl: widget.engine.imageUrls[_currentImageIndex],
+          height: 200,
+          fit: BoxFit.contain,
+          placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          errorWidget: (context, url, error) => const Center(
             child: Icon(Icons.error, size: 50, color: Colors.red),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
@@ -97,7 +111,7 @@ class EngineTab extends StatelessWidget {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
-        ...engine.features.asMap().entries.map((entry) {
+        ...widget.engine.features.asMap().entries.map((entry) {
           final index = entry.key;
           final feature = entry.value;
           return Padding(

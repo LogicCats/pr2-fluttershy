@@ -15,6 +15,13 @@ class GameEnginesApp extends StatelessWidget {
       title: 'Игровые движки',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'CustomFont',
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       home: const GameEnginesScreen(),
       debugShowCheckedModeBanner: false,
