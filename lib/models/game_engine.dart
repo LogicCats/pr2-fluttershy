@@ -1,13 +1,13 @@
 class GameEngine {
   final String name;
   final String description;
-  final List<String> imageUrls; // Изменили на список изображений
+  final List<String> imageUrls;
   final List<String> features;
 
   GameEngine({
     required this.name,
     required this.description,
-    required this.imageUrls, // Обновили параметр
+    required this.imageUrls,
     required this.features,
   });
 }

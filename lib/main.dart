@@ -17,7 +17,6 @@ class GameEnginesApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
-            fontFamily: 'CustomFont',
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
