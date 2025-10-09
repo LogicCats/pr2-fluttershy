@@ -26,15 +26,20 @@ class Feature {
   });
 }
 
-// Данные о движках
+
 final List<GameEngine> gameEngines = [
   GameEngine(
     name: 'Unity',
     description: 'Кроссплатформенный игровой движок для разработки 2D и 3D игр и приложений. Поддерживает множество платформ включая PC, мобильные устройства и игровые консоли.',
     imageUrls: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Unity_Technologies_logo.svg/2560px-Unity_Technologies_logo.svg.png',
-      'https://logos-world.net/wp-content/uploads/2023/01/Unity-Emblem.png',
-      'https://haieng.com/wp-content/uploads/2017/10/test-image-500x500.jpg'
+      'https://300mind.studio/blog/wp-content/uploads/2023/07/unity-game-engine-1024x614-1.webp',
+      'https://eu-images.contentstack.com/v3/assets/blt740a130ae3c5d529/bltdb2549f4bf38877c/6557812874ff0e040a67f90a/Unity_Game_Pass.png',
+      'https://cdn.prod.website-files.com/63fda77e5fd49598bbf00892/6436b3d216cc13283a8994dd_berita-211-berkenalan-dengan-fitur-fitur-unity-3d-20200716-153311.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png'
     ],
     features: [
       Feature(
@@ -59,9 +64,14 @@ final List<GameEngine> gameEngines = [
     name: 'Unreal Engine',
     description: 'Мощный игровой движок с передовой графикой, используемый для создания AAA-игр и визуализаций. Разработан Epic Games.',
     imageUrls: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Unreal_Engine_Logo_%28new_typeface%29.svg/800px-Unreal_Engine_Logo_%28new_typeface%29.svg.png',
       'https://bairesdev.mo.cloudinary.net/blog/2022/08/ue-logo-1400x788-1400x788-8f185e1e3635-1.jpg?tx=w_1920,q_auto',
-      'https://haieng.com/wp-content/uploads/2017/10/test-image-500x500.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Unreal_Engine_Logo.svg/1200px-Unreal_Engine_Logo.svg.png',
+      'https://300mind.studio/blog/wp-content/uploads/2024/03/unreal-engine-games.webp',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png'
     ],
     features: [
       Feature(
@@ -86,9 +96,14 @@ final List<GameEngine> gameEngines = [
     name: 'Godot',
     description: 'Открытый и бесплатный игровой движок с поддержкой 2D и 3D графики. Имеет собственный язык программирования GDScript.',
     imageUrls: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Godot_icon.svg/1200px-Godot_icon.svg.png',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF0JRsHg5TbN3vU_PldPoFfyVWgwtKCG6KEw&s',
-      'https://haieng.com/wp-content/uploads/2017/10/test-image-500x500.jpg'
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJJHJY4f2pwLONjPrnJ9nAYbMs-7_aaDpliw&s',
+      'https://cdn2.unrealengine.com/godot-fb-tw-share-image-1920x1080-0abe26cbac38.jpg',
+      'https://static0.makeuseofimages.com/wordpress/wp-content/uploads/2021/07/godot_fb_cover_img.jpg?w=1600&h=900&fit=crop',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png'
     ],
     features: [
       Feature(
@@ -114,8 +129,13 @@ final List<GameEngine> gameEngines = [
     description: 'Игровой движок с продвинутой графикой, известный по играм серии Crysis. Разработан немецкой компанией Crytek.',
     imageUrls: [
       'https://upload.wikimedia.org/wikipedia/commons/8/8d/CryEngine_Nex-Gen%284th_Generation%29.png',
+      'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/220980/capsule_616x353.jpg?t=1478096497',
       'https://upload.wikimedia.org/wikipedia/ru/9/93/CryEngine3_logo.jpg',
-      'https://haieng.com/wp-content/uploads/2017/10/test-image-500x500.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png'
     ],
     features: [
       Feature(
@@ -140,9 +160,14 @@ final List<GameEngine> gameEngines = [
     name: 'GameMaker Studio',
     description: 'Игровой движок, ориентированный на 2D-разработку, с упором на простоту использования и быстрое создание прототипов.',
     imageUrls: [
-      'https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/GameMaker_Logo.svg/1920px-GameMaker_Logo.svg.png',
-      'https://upload.wikimedia.org/wikipedia/commons/2/2e/GameMaker-Studio-Logo1.jpg',
-      'https://haieng.com/wp-content/uploads/2017/10/test-image-500x500.jpg'
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo283Gao-M6_bafMbeyt2MQVJNgnSUq9vI5Q&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsSFYOCmAwUZcM0qBqG179Mle9X52a8nkhRg&s',
+      'https://app2top.com/wp-content/uploads/2016/11/GM-4.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png'
     ],
     features: [
       Feature(
@@ -167,9 +192,14 @@ final List<GameEngine> gameEngines = [
     name: 'Construct',
     description: 'Игровой движок, основанный на событиях, не требующий знания программирования. Идеален для начинающих разработчиков.',
     imageUrls: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Construct_3_Logo.svg/800px-Construct_3_Logo.svg.png',
-      'https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Construct_2_logo.png/250px-Construct_2_logo.png',
-      'https://haieng.com/wp-content/uploads/2017/10/test-image-500x500.jpg'
+      'https://logicsimplified.com/newgames/wp-content/uploads/2020/06/Construct.png',
+      'https://store-images.s-microsoft.com/image/apps.52943.14569108969114715.cad57170-da51-419a-b303-cf8423d450e0.74be02b5-d797-4949-b57e-5b25ca32fed2',
+      'https://i.ebayimg.com/images/g/o54AAOSwB8NdxXqr/s-l400.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png'
     ],
     features: [
       Feature(
@@ -194,9 +224,14 @@ final List<GameEngine> gameEngines = [
     name: 'Source',
     description: 'Игровой движок, разработанный Valve Corporation, известный по играм Half-Life 2, Counter-Strike: Source и другим.',
     imageUrls: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Source_engine_logo_and_wordmark.svg/1920px-Source_engine_logo_and_wordmark.svg.png',
-      'https://www.sourcemodding.com/img/history/source2/source_engine2_logo.webp',
-      'https://haieng.com/wp-content/uploads/2017/10/test-image-500x500.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Source_engine_logo_and_wordmark.svg/330px-Source_engine_logo_and_wordmark.svg.png',
+      'https://habrastorage.org/webt/35/p6/il/35p6ilwrz5fccxsgnk7vtjewpww.png',
+      'https://images.steamusercontent.com/ugc/2036228562264431236/55345CC0365CF36A171A88B329729EE99EEEB36E/',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png'
     ],
     features: [
       Feature(

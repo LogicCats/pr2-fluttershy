@@ -11,14 +11,6 @@ class EngineTab extends StatefulWidget {
 }
 
 class _EngineTabState extends State<EngineTab> {
-  int _currentImageIndex = 0;
-
-  void _cycleImage(int index) {
-    setState(() {
-      _currentImageIndex = index;
-    });
-  }
-
   void _showFeatureSnackBar(String featureTitle) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -62,22 +54,24 @@ class _EngineTabState extends State<EngineTab> {
           ),
           const SizedBox(height: 20),
 
-          // Горизонтальный ListView с изображениями
-          SizedBox(
-            height: 150,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.engine.imageUrls.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => _cycleImage(index),
-                  child: Container(
-                    width: 200,
-                    margin: const EdgeInsets.only(right: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey),
-                    ),
+          // ГОРИЗОНТАЛЬНЫЙ LISTVIEW С ИЗОБРАЖЕНИЯМИ СО СКРУГЛЕННЫМИ УГЛАМИ
+          Card(
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Container(
+              width: double.infinity,
+              height: 200, // Высота для горизонтального списка
+              padding: const EdgeInsets.all(16),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.engine.imageUrls.length,
+                physics: const ClampingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 300,
+                    margin: const EdgeInsets.only(right: 12),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.network(
@@ -85,18 +79,38 @@ class _EngineTabState extends State<EngineTab> {
                         fit: BoxFit.cover,
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress == null) return child;
-                          return const Center(child: CircularProgressIndicator());
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
                         },
                         errorBuilder: (context, error, stackTrace) {
-                          return const Center(
-                            child: Icon(Icons.error, size: 50, color: Colors.red),
+                          return Container(
+                            color: Colors.grey[200],
+                            child: const Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.error, size: 40, color: Colors.red),
+                                  SizedBox(height: 8),
+                                  Text(
+                                    'Ошибка загрузки',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
                         },
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
           const SizedBox(height: 20),
