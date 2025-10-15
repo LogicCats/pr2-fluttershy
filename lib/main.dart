@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'pages/login_page.dart';
+import 'pages/register_page.dart';
+import 'pages/profile_page.dart';
 import 'models/game_engine.dart';
 import 'widgets/engine_tab.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Инициализируем SharedPreferences
+  await SharedPreferences.getInstance();
+
   runApp(const GameEnginesApp());
 }
 
@@ -16,8 +25,14 @@ class GameEnginesApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const GameEnginesScreen(),
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
+        '/profile': (context) => const ProfilePage(),
+        '/game_engines': (context) => const GameEnginesScreen(),
+      },
     );
   }
 }
@@ -50,6 +65,17 @@ class _GameEnginesScreenState extends State<GameEnginesScreen> with SingleTicker
       appBar: AppBar(
         title: const Text('ИГРОВЫЕ ДВИЖКИ'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
+              );
+            },
+          ),
+        ],
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
