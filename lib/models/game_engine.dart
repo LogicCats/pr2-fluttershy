@@ -32,7 +32,7 @@ final List<GameEngine> gameEngines = [
     name: 'Unity',
     description: 'Кроссплатформенный игровой движок для разработки 2D и 3D игр и приложений. Поддерживает множество платформ включая PC, мобильные устройства и игровые консоли.',
     imageUrls: [
-      'https://300mind.studio/blog/wp-content/uploads/2023/07/unity-game-engine-1024x614-1.webp',
+      'https://upload.wikimedia.org/wikipedia/ru/a/a3/Unity_Logo.png',
       'https://eu-images.contentstack.com/v3/assets/blt740a130ae3c5d529/bltdb2549f4bf38877c/6557812874ff0e040a67f90a/Unity_Game_Pass.png',
       'https://cdn.prod.website-files.com/63fda77e5fd49598bbf00892/6436b3d216cc13283a8994dd_berita-211-berkenalan-dengan-fitur-fitur-unity-3d-20200716-153311.png',
       'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
@@ -66,7 +66,7 @@ final List<GameEngine> gameEngines = [
     imageUrls: [
       'https://bairesdev.mo.cloudinary.net/blog/2022/08/ue-logo-1400x788-1400x788-8f185e1e3635-1.jpg?tx=w_1920,q_auto',
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Unreal_Engine_Logo.svg/1200px-Unreal_Engine_Logo.svg.png',
-      'https://300mind.studio/blog/wp-content/uploads/2024/03/unreal-engine-games.webp',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Unreal_Engine_horizontal_logo.svg/1920px-Unreal_Engine_horizontal_logo.svg.png',
       'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
       'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
       'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
@@ -162,7 +162,7 @@ final List<GameEngine> gameEngines = [
     imageUrls: [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo283Gao-M6_bafMbeyt2MQVJNgnSUq9vI5Q&s',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsSFYOCmAwUZcM0qBqG179Mle9X52a8nkhRg&s',
-      'https://app2top.com/wp-content/uploads/2016/11/GM-4.png',
+      'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1670460/header.jpg',
       'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
       'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
       'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',
@@ -192,7 +192,7 @@ final List<GameEngine> gameEngines = [
     name: 'Construct',
     description: 'Игровой движок, основанный на событиях, не требующий знания программирования. Идеален для начинающих разработчиков.',
     imageUrls: [
-      'https://logicsimplified.com/newgames/wp-content/uploads/2020/06/Construct.png',
+      'https://static.wixstatic.com/media/fb6e57_05cb5f53e9c649959895487a5490bdf1~mv2.png/v1/fill/w_320,h_320,al_c,lg_1,q_85,enc_auto/fb6e57_05cb5f53e9c649959895487a5490bdf1~mv2.png',
       'https://store-images.s-microsoft.com/image/apps.52943.14569108969114715.cad57170-da51-419a-b303-cf8423d450e0.74be02b5-d797-4949-b57e-5b25ca32fed2',
       'https://i.ebayimg.com/images/g/o54AAOSwB8NdxXqr/s-l400.png',
       'https://upload.wikimedia.org/wikipedia/commons/8/85/Logo-Test.png',

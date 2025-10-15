@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pr2/pages/profile_page.dart';
+import '../routes.dart';
 import '../widgets/text_field.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -82,16 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _register() {
     if (_formKey.currentState!.validate()) {
-      // Переход на страницу профиля с передачей данных
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ProfilePage(
-            initialName: _nameController.text,
-            initialEmail: _emailController.text,
-          ),
-        ),
-      );
+      Navigator.pushReplacementNamed(context, AppRoutes.home);
     }
   }
 

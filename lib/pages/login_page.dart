@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pr2/pages/profile_page.dart';
-import 'package:pr2/pages/register_page.dart';
+import '../routes.dart';
 import '../widgets/text_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -54,13 +53,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() {
     if (_formKey.currentState!.validate()) {
-      // Переход на страницу профиля
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ProfilePage(),
-        ),
-      );
+      Navigator.pushReplacementNamed(context, AppRoutes.home);
     }
   }
 
@@ -122,10 +115,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegisterPage()),
-                  );
+                  Navigator.pushNamed(context, AppRoutes.register);
                 },
                 child: const Text(
                   'Нет аккаунта? Зарегистрируйтесь',

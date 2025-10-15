@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/game_engine.dart';
+import '../routes.dart';
 
 class EngineTab extends StatefulWidget {
   final GameEngine engine;
@@ -17,6 +18,17 @@ class _EngineTabState extends State<EngineTab> {
         content: Text('Выбрано: $featureTitle'),
         duration: const Duration(seconds: 2),
       ),
+    );
+  }
+
+  void _navigateToDetail(Feature feature) {
+    Navigator.pushNamed(
+      context,
+      AppRoutes.detail,
+      arguments: {
+        'engine': widget.engine,
+        'selectedFeature': feature,
+      },
     );
   }
 
@@ -54,7 +66,7 @@ class _EngineTabState extends State<EngineTab> {
           ),
           const SizedBox(height: 20),
 
-          // ГОРИЗОНТАЛЬНЫЙ LISTVIEW С ИЗОБРАЖЕНИЯМИ СО СКРУГЛЕННЫМИ УГЛАМИ
+          // ГОРИЗОНТАЛЬНЫЙ LISTVIEW С ИЗОБРАЖЕНИЯМИ
           Card(
             elevation: 4,
             shape: RoundedRectangleBorder(
@@ -62,7 +74,7 @@ class _EngineTabState extends State<EngineTab> {
             ),
             child: Container(
               width: double.infinity,
-              height: 200, // Высота для горизонтального списка
+              height: 200,
               padding: const EdgeInsets.all(16),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -146,7 +158,7 @@ class _EngineTabState extends State<EngineTab> {
                     feature.trailingIcon,
                     style: const TextStyle(fontSize: 20),
                   ),
-                  onTap: () => _showFeatureSnackBar(feature.title),
+                  onTap: () => _navigateToDetail(feature),
                 ),
               );
             },

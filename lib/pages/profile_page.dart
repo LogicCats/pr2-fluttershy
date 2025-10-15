@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 
+import '../routes.dart';
+
 class ProfilePage extends StatefulWidget {
   final String initialName;
   final String initialEmail;
@@ -310,7 +312,8 @@ class _ProfilePageState extends State<ProfilePage> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/login');
+              // В кнопке выхода
+              Navigator.pushReplacementNamed(context, AppRoutes.login);
             },
           ),
         ],
