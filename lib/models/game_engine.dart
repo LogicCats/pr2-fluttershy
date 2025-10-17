@@ -2,7 +2,7 @@ class GameEngine {
   final String name;
   final String description;
   final List<String> imageUrls;
-  final List<Feature> features; // Изменили на список объектов Feature
+  final List<Feature> features;
 
   GameEngine({
     required this.name,

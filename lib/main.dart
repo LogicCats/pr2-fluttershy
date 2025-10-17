@@ -32,7 +32,6 @@ class GameEnginesApp extends StatelessWidget {
         AppRoutes.register: (context) => const RegisterPage(),
         AppRoutes.home: (context) => const HomePage(),
         AppRoutes.profile: (context) => const ProfilePage(),
-        // DetailPage убран из статических маршрутов, так как требует параметры
       },
       onGenerateRoute: (settings) {
         // Обрабатываем маршрут detail с параметрами
