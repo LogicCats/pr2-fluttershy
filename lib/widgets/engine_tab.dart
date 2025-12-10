@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../models/game_engine.dart';
+import '../models/game_engine.dart' as app_model;
+import '../models/feature.dart' as app_model;
 import '../routes.dart';
 
 class EngineTab extends StatefulWidget {
-  final GameEngine engine;
+  final app_model.GameEngineModel engine;
 
   const EngineTab({super.key, required this.engine});
 
@@ -12,16 +13,7 @@ class EngineTab extends StatefulWidget {
 }
 
 class _EngineTabState extends State<EngineTab> {
-  void _showFeatureSnackBar(String featureTitle) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Выбрано: $featureTitle'),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
-
-  void _navigateToDetail(Feature feature) {
+  void _navigateToDetail(app_model.FeatureModel feature) {
     Navigator.pushNamed(
       context,
       AppRoutes.detail,
@@ -32,7 +24,7 @@ class _EngineTabState extends State<EngineTab> {
     );
   }
 
-  Widget _buildFeatureCard(Feature feature) {
+  Widget _buildFeatureCard(app_model.FeatureModel feature) {
     return Card(
       margin: const EdgeInsets.only(bottom: 10),
       elevation: 2,
@@ -205,14 +197,16 @@ class _EngineTabState extends State<EngineTab> {
                         width: 30,
                         height: 30,
                         errorBuilder: (context, error, stackTrace) {
-                          return const Icon(Icons.sports_esports, size: 30, color: Colors.blue);
+                          return const Icon(
+                              Icons.sports_esports, size: 30, color: Colors.blue);
                         },
                       ),
                       const SizedBox(width: 10),
                       const Expanded(
                         child: Text(
                           'Козеев В.А. ИКБО-32-22',
-                          style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                          style:
+                          TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
                         ),
                       ),
                     ],

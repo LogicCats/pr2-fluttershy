@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../models/game_engine.dart';
+import '../models/game_engine.dart' as app_model;
+import '../models/feature.dart' as app_model;
 
 class DetailPage extends StatelessWidget {
-  final GameEngine engine;
-  final Feature? selectedFeature;
+  final app_model.GameEngineModel engine;
+  final app_model.FeatureModel? selectedFeature;
 
   const DetailPage({
     super.key,
