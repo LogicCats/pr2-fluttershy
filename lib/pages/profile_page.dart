@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:io';
+import 'dart:convert';
 
 import '../routes.dart';
+import '../bloc/theme/theme_cubit.dart';
 
 class ProfilePage extends StatefulWidget {
   final String initialName;
@@ -25,7 +27,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final ImagePicker _imagePicker = ImagePicker();
   File? _imageFile;
-  Uint8List? _webImageBytes; // Для хранения изображения в веб-режиме
+  Uint8List? _webImageBytes;
   bool _isEditing = false;
 
   // Контроллеры для полей ввода
@@ -245,9 +247,9 @@ class _ProfilePageState extends State<ProfilePage> {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[50],
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[200]!),
+        border: Border.all(color: Colors.grey[300]!),
       ),
       child: Row(
         children: [
@@ -262,8 +264,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 labelText: label,
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
-                labelStyle: const TextStyle(color: Colors.grey),
+                labelStyle: TextStyle(color: Theme.of(context).hintColor),
               ),
+              style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
               onTap: onTap,
               readOnly: onTap != null,
             )
@@ -272,15 +275,18 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 Text(
                   label,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey,
+                    color: Theme.of(context).hintColor,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   controller.text.isEmpty ? 'Не указано' : controller.text,
-                  style: const TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
                 ),
               ],
             ),
@@ -295,9 +301,26 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Профиль'),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         actions: [
+          // Кнопка переключения темы в AppBar
+          BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, themeState) {
+              return IconButton(
+                icon: Icon(
+                  themeState.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                  color: Theme.of(context).appBarTheme.foregroundColor,
+                ),
+                onPressed: () {
+                  context.read<ThemeCubit>().toggleTheme();
+                },
+                tooltip: themeState.isDarkMode
+                    ? 'Переключить на светлую тему'
+                    : 'Переключить на темную тему',
+              );
+            },
+          ),
           if (_isEditing)
             IconButton(
               icon: const Icon(Icons.close),
@@ -312,9 +335,9 @@ class _ProfilePageState extends State<ProfilePage> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              // В кнопке выхода
               Navigator.pushReplacementNamed(context, AppRoutes.login);
             },
+            tooltip: 'Выйти',
           ),
         ],
       ),
@@ -332,10 +355,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     backgroundImage: _profileImage,
                     backgroundColor: Colors.blue[100],
                     child: _profileImage == null
-                        ? const Icon(
+                        ? Icon(
                       Icons.person,
                       size: 60,
-                      color: Colors.blue,
+                      color: Theme.of(context).primaryColor,
                     )
                         : null,
                   ),
@@ -346,8 +369,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Container(
                         width: 36,
                         height: 36,
-                        decoration: const BoxDecoration(
-                          color: Colors.blue,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
                           shape: BoxShape.circle,
                         ),
                         child: IconButton(
@@ -405,6 +428,48 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: _isEditing ? _selectDate : null,
             ),
 
+            const SizedBox(height: 20),
+
+            // Переключатель темы в настройках
+            Card(
+              color: Theme.of(context).cardColor,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.color_lens,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          'Тема приложения',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).textTheme.bodyLarge?.color,
+                          ),
+                        ),
+                      ],
+                    ),
+                    BlocBuilder<ThemeCubit, ThemeState>(
+                      builder: (context, themeState) {
+                        return Switch(
+                          value: themeState.isDarkMode,
+                          onChanged: (value) {
+                            context.read<ThemeCubit>().setTheme(value);
+                          },
+                          activeColor: Theme.of(context).primaryColor,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
             const SizedBox(height: 30),
 
             if (_isEditing)
@@ -416,14 +481,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: ElevatedButton(
                       onPressed: _toggleEditing,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Theme.of(context).primaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Сохранить изменения',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -437,10 +505,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
+                        side: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Отменить',
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                     ),
                   ),

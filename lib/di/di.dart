@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import '../data/database/database.dart';
 import '../data/repositories/game_engine_repository.dart';
 import '../bloc/game_engine/game_engine_bloc.dart';
+import '../bloc/theme/theme_cubit.dart'; // Добавляем импорт
 
 final getIt = GetIt.instance;
 
@@ -18,4 +19,7 @@ void configureDependencies() {
   getIt.registerFactory<GameEngineBloc>(
         () => GameEngineBloc(getIt<GameEngineRepository>()),
   );
+
+  // Регистрируем ThemeCubit как синглтон
+  getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 }

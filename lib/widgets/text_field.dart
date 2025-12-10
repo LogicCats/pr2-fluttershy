@@ -45,12 +45,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
         }
       },
       validator: widget.validator ?? _defaultValidator,
+      style: TextStyle(
+        color: Theme.of(context).textTheme.bodyLarge?.color,
+      ),
       decoration: InputDecoration(
-        prefixIcon: Icon(widget.prefixIcon),
+        prefixIcon: Icon(
+          widget.prefixIcon,
+          color: Theme.of(context).hintColor,
+        ),
         suffixIcon: widget.isPassword
             ? IconButton(
           icon: Icon(
             _obscureText ? Icons.visibility : Icons.visibility_off,
+            color: Theme.of(context).hintColor,
           ),
           onPressed: () {
             setState(() {
@@ -60,9 +67,44 @@ class _CustomTextFieldState extends State<CustomTextField> {
         )
             : null,
         hintText: widget.hintText,
+        hintStyle: TextStyle(
+          color: Theme.of(context).hintColor,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: Theme.of(context).dividerColor,
+          ),
         ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: Theme.of(context).dividerColor,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: Theme.of(context).primaryColor,
+            width: 2,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 1,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 2,
+          ),
+        ),
+        filled: true,
+        fillColor: Theme.of(context).cardColor,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
     );

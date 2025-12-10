@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../di/di.dart';
 import '../bloc/game_engine/game_engine_bloc.dart';
+import '../bloc/theme/theme_cubit.dart'; // Добавляем импорт
 import '../widgets/engine_tab.dart';
 import '../routes.dart';
 
@@ -12,7 +13,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin { // Изменили на TickerProviderStateMixin
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController? _tabController;
   int _currentIndex = 0;
   late GameEngineBloc _gameEngineBloc;
@@ -41,12 +42,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin { // 
   }
 
   void _updateTabController(int length) {
-    // Если TabController еще не создан, создаем его
     if (_tabController == null) {
       _tabController = TabController(length: length, vsync: this);
-    }
-    // Если длина изменилась, создаем новый контроллер
-    else if (_tabController!.length != length) {
+    } else if (_tabController!.length != length) {
       _tabController!.dispose();
       _tabController = TabController(length: length, vsync: this);
     }
@@ -54,8 +52,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin { // 
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<GameEngineBloc>.value(
-      value: _gameEngineBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<GameEngineBloc>.value(value: _gameEngineBloc),
+      ],
       child: BlocBuilder<GameEngineBloc, GameEngineState>(
         builder: (context, state) {
           if (state is GameEngineLoading) {
@@ -87,8 +87,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin { // 
 
           if (state is GameEngineLoaded) {
             final gameEngines = state.engines;
-
-            // Обновляем TabController с правильной длиной
             _updateTabController(gameEngines.length);
 
             return Scaffold(
@@ -96,11 +94,31 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin { // 
                 title: const Text('ИГРОВЫЕ ДВИЖКИ'),
                 centerTitle: true,
                 actions: [
+                  // Кнопка переключения темы
+                  BlocBuilder<ThemeCubit, ThemeState>(
+                    builder: (context, themeState) {
+                      return IconButton(
+                        icon: Icon(
+                          themeState.isDarkMode
+                              ? Icons.light_mode
+                              : Icons.dark_mode,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          context.read<ThemeCubit>().toggleTheme();
+                        },
+                        tooltip: themeState.isDarkMode
+                            ? 'Переключить на светлую тему'
+                            : 'Переключить на темную тему',
+                      );
+                    },
+                  ),
                   IconButton(
                     icon: const Icon(Icons.person),
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.profile);
                     },
+                    tooltip: 'Профиль',
                   ),
                 ],
                 bottom: _tabController != null
